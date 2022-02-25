@@ -13,7 +13,7 @@ const App = () => {
   const classes = useStyles();
   // State
   const [name, setName] = useState("");
-  const [question, setQuestion] = useState([]);
+  const [question, setQuestion] = useState(undefined);
   const [score, setScore] = useState(0);
   // Function
   const fetchQuestion = async (category = "", difficulty = "") => {
