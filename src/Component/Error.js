@@ -1,6 +1,6 @@
-import React from "react";
+import React, { Children } from "react";
 
-const Error = () => {
+const Error = ({ children }) => {
   return (
     <div
       style={{
@@ -16,7 +16,7 @@ const Error = () => {
         borderRadius: 5,
       }}
     >
-      Please Fill All the Field
+      {children}
     </div>
   );
 };

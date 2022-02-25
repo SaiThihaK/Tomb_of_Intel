@@ -30,7 +30,7 @@ const Home = ({ name, setName, fetchQuestion }) => {
     <div className={classes.content}>
       <div className={classes.setting}>
         <span style={{ fontSize: 30 }}>Quiz Setting</span>
-        {warning && <Error />}
+        {warning && <Error>Please Fill all the fields</Error>}
         <div className={classes.setting_select}>
           <TextField
             label="Enter Your Name"
@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => {
     content: {
       display: "flex",
       justifyContent: "space-around",
-      [theme.breakpoints.down("xs")]: {
+      [theme.breakpoints.down("sm")]: {
         flexDirection: "column-reverse",
       },
     },
@@ -105,7 +105,7 @@ const useStyles = makeStyles((theme) => {
       fontFamily: "Poppins ,sans-serif",
       fontWeight: 300,
       padding: 20,
-      [theme.breakpoints.down("xs")]: {
+      [theme.breakpoints.down("sm")]: {
         width: "100%",
       },
     },
@@ -114,7 +114,7 @@ const useStyles = makeStyles((theme) => {
       alignSelf: "center",
       padding: 8,
       margin: 20,
-      [theme.breakpoints.down("xs")]: {
+      [theme.breakpoints.down("sm")]: {
         width: "100%",
       },
     },
