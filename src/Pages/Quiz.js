@@ -10,7 +10,6 @@ const Quiz = ({ question, score, name, setScore, setQuestion }) => {
   const [selected, setSelected] = useState();
   const [error, setError] = useState(false);
   const [disable, setDisable] = useState(false);
-  console.log(question);
   // navigate
   const navigate = useNavigate();
   useEffect(() => {
@@ -28,7 +27,6 @@ const Quiz = ({ question, score, name, setScore, setQuestion }) => {
         ])
     );
   }, [currQ, question]);
-  console.log(option);
   // Function
   const handleCheck = (opt) => {
     setSelected(opt);
@@ -36,19 +34,40 @@ const Quiz = ({ question, score, name, setScore, setQuestion }) => {
     if (opt === question[currQ].correct_answer) {
       setScore(score + 1);
       setError(false);
-      return;
     }
   };
-  const handleShuffle = (arr) => {
-    return arr.sort(() => Math.random() - 0.5);
-  };
-
   const handleSelected = (opt) => {
     if ((selected === opt) & (selected === question[currQ].correct_answer))
       return classes.correct;
+    // If my answer is rignt it will show green
     else if ((selected === opt) & (selected !== question[currQ].correct_answer))
       return classes.wrong;
+    // if my answer is wrong it will show red
     else if (opt === question[currQ].correct_answer) return classes.correct;
+    // if my answer is wrong ,this will show right answer with green color together with my red colored wrong answer
+  };
+
+  const handleShuffle = (arr) => {
+    return arr.sort(() => Math.random() - 0.5);
+  };
+  const handleQuit = () => {
+    setQuestion(undefined);
+    setCurrQ(0);
+    navigate("/");
+  };
+  const handleNext = () => {
+    if (!selected) {
+      setError(true);
+      return;
+    }
+    if (currQ > 8) {
+      navigate("/result");
+    } else {
+      setCurrQ(currQ + 1);
+      setSelected("");
+      setError(false);
+      setDisable(false);
+    }
   };
 
   const classes = useStyles();
@@ -101,6 +120,7 @@ const Quiz = ({ question, score, name, setScore, setQuestion }) => {
                   color="secondary"
                   variant="contained"
                   size="large"
+                  onClick={handleQuit}
                 >
                   Quit
                 </Button>
@@ -109,6 +129,7 @@ const Quiz = ({ question, score, name, setScore, setQuestion }) => {
                   color="primary"
                   variant="contained"
                   size="large"
+                  onClick={handleNext}
                 >
                   Next Question
                 </Button>

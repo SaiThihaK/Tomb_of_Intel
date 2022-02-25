@@ -52,7 +52,10 @@ const App = () => {
               />
             }
           />
-          <Route path="/result" element={<Result />} />
+          <Route
+            path="/result"
+            element={<Result score={score} setScore={setScore} />}
+          />
         </Routes>
       </div>
       <Footer />
